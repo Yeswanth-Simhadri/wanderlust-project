@@ -46,10 +46,6 @@ const sessionOptions={
     },
 };
 
-app.get("/",(req,res)=>{
-    res.send("hi");
-});
-
 app.use(session(sessionOptions));
 app.use(flash());
 
@@ -69,6 +65,11 @@ app.use((req,res,next)=>{
     res.locals.currentUser=req.user;
     next();
 })
+
+app.get("/", (req, res) => {
+    res.render("intro.ejs")
+//   res.redirect("/listings")
+});
 
 app.use("/listings",listingsRouter);
 app.use("/listings/:id/reviews",reviewsRouter);

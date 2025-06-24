@@ -1,3 +1,13 @@
+const { ObjectId } = require("mongoose").Types;
+
+// Define a sample user ID to assign as the owner
+const owner = {
+  _id: new ObjectId("685a3c20b5d55c1ce3a64cb2"),
+  email: "22341a4256@gmrit.edu.in",
+  username: "san",
+};
+
+
 const sampleListings = [
   {
     title: "Cozy Beachfront Cottage",
@@ -347,5 +357,14 @@ const sampleListings = [
     country: "Costa Rica",
   },
 ];
+
+sampleListings.forEach(listing => {
+  listing.owner = owner._id; // Only reference _id as per your schema
+});
+// Add `owner._id` to all listings
+sampleListings.forEach(listing => {
+  listing.owner = owner._id;
+});
+
 
 module.exports = { data: sampleListings };
